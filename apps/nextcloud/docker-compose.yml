@@ -18,6 +18,8 @@ services:
     image: redis:6
     user: "1000:1000"
     restart: on-failure
+    volumes:
+      - "${APP_DATA_DIR}/data/redis:/data"
 
   web:
     image: nextcloud:20-apache
@@ -44,7 +46,6 @@ services:
     image: nextcloud:20-apache
     # Currently needs to be run as root
     # https://github.com/nextcloud/docker/blob/05026b029d37fc5cd488d4a4a2a79480e39841ba/21.0/apache/entrypoint.sh#L53-L77
-    # user: "1000:1000"
     # user: "1000:1000"
     restart: on-failure
     volumes:
