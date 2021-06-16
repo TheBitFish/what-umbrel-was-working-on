@@ -37,7 +37,7 @@ services:
       - MYSQL_PASSWORD=moneyprintergobrrr
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
-      - NEXTCLOUD_TRUSTED_DOMAINS=http://umbrel.local http://${APP_HIDDEN_SERVICE}
+      - NEXTCLOUD_TRUSTED_DOMAINS=umbrel.local:8081 ${APP_HIDDEN_SERVICE}
     depends_on:
       - db
       - redis
