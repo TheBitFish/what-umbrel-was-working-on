@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  server:
+    image: pihole/pihole:latest
+    # Pi-hole doesn't support running as non-root
+    # https://github.com/pi-hole/docker-pi-hole/issues/685
+    # user: "1000:1000"
+    restart: on-failure
+    ports:
+      - 53:53
+      - 53:53/udp
+      - ${APP_PIHOLE_PORT}:80
+    volumes:
+      - ${APP_DATA_DIR}/data/pihole:/etc/pihole/
+      - ${APP_DATA_DIR}/data/dnsmasq:/etc/dnsmasq.d/
+    environment:
+      - VIRTUAL_HOST=umbrel.local
+      # TODO: Make this dynamic
+      - WEBPASSWORD=moneyprintergobrrr
+    networks:
+      default:
+        ipv4_address: $APP_PIHOLE_IP
